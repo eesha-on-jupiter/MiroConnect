@@ -1,0 +1,102 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Rhino 7: net48 | Rhino 8 Windows: net7.0-windows | Rhino 8 Mac: net7.0 -->
+    <TargetFrameworks>net7.0-windows;net7.0;net48</TargetFrameworks>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <TargetExt>.gha</TargetExt>
+    <NoWarn>NU1701;NETSDK1086</NoWarn>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <!-- Bitmap (icon) resources in Resources.resx need preserialized resources to build
+         with the dotnet CLI on every target -->
+    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- Assembly + Yak metadata -->
+    <Version>1.0.0</Version>
+    <Title>MiroConnect</Title>
+    <Company>MiroConnect Authors</Company>
+    <Description>Grasshopper components for the Miro REST API — build sticky notes, shapes, text, cards, frames, images, connectors and tags on a Miro board from Rhino/Grasshopper. Made with the PleaseREST Claude Code plugin.</Description>
+  </PropertyGroup>
+
+  <!-- Test project lives in a subfolder; keep it out of the main plugin build -->
+  <ItemGroup>
+    <Compile Remove="MiroConnect.Tests\**\*.cs" />
+    <EmbeddedResource Remove="MiroConnect.Tests\**" />
+    <None Remove="MiroConnect.Tests\**" />
+  </ItemGroup>
+
+  <!-- Local dev tooling (Python MCP test server) never ships -->
+  <ItemGroup>
+    <None Remove="MCP\**" />
+  </ItemGroup>
+
+  <!-- Yak packaging: Release output holds only what ships (no .pdb / deps.json / runtimeconfig.json) -->
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+    <GenerateRuntimeConfigurationFiles>false</GenerateRuntimeConfigurationFiles>
+  </PropertyGroup>
+
+  <!-- Yak packaging: manifest + logo copied next to the .gha so `yak build` finds them -->
+  <ItemGroup>
+    <None Include="manifest.yml" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="Icons\MC_MiroConnectLogo.png" Link="MiroConnectLogo.png" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Grasshopper" Version="7.0.20314.3001" Condition="$(TargetFramework) == 'net48'" ExcludeAssets="runtime" />
+    <PackageReference Include="Grasshopper" Version="8.0.23304.9001" Condition="!$(TargetFramework.StartsWith('net4'))" ExcludeAssets="runtime" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <!-- Table Reader (.xlsx); EPPlus 4.x is the last LGPL release -->
+    <PackageReference Include="EPPlus" Version="4.5.3.3" />
+    <PackageReference Include="System.Resources.Extensions" Version="8.0.0" />
+  </ItemGroup>
+
+  <!-- net48 (Rhino 7): the System.Net.Http facade is not auto-referenced in an SDK-style net48
+       project, but MiroClient.cs uses HttpClient -->
+  <ItemGroup Condition="$(TargetFramework) == 'net48'">
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+
+  <!-- Windows-only builds (Rh7 net48 + Rh8 net7.0-windows) -->
+  <PropertyGroup Condition="$(TargetFramework.Contains('-windows')) or $(TargetFramework.StartsWith('net4'))">
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <!-- WinForms for .NET 7.0 on macOS (Rh8 Mac). Rhino supplies System.Drawing at runtime, so
+       System.Drawing.Common (also pulled in by EPPlus) is compile-only and never copied -->
+  <ItemGroup Condition="!($(TargetFramework.Contains('-windows')) or $(TargetFramework.StartsWith('net4')))">
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net48" Version="1.0.3" ExcludeAssets="all" GeneratePathProperty="true" />
+    <Reference Include="$(PkgMicrosoft_NETFramework_ReferenceAssemblies_net48)\build\.NETFramework\v4.8\System.Windows.Forms.dll" Private="False" />
+    <PackageReference Include="System.Drawing.Common" Version="7.0.0" ExcludeAssets="runtime" />
+    <PackageReference Include="Microsoft.Win32.SystemEvents" Version="7.0.0" ExcludeAssets="runtime" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <!-- Rh8 Mac: EPPlus pulls System.Security.Cryptography.Pkcs, whose runtimes/win copy is
+       Windows-only and never loads on Mac — keep it out of the package -->
+  <Target Name="RemoveWindowsRuntimesFromMacOutput" AfterTargets="Build" Condition="'$(Configuration)' == 'Release' and '$(TargetFramework)' == 'net7.0'">
+    <RemoveDir Directories="$(OutDir)runtimes" />
+  </Target>
+
+  <!-- Enable debugging in Rhino 7 on Mac -->
+  <Target Name="CopyPdbForMonoDebugging" AfterTargets="AfterBuild">
+    <Copy SourceFiles="$(TargetDir)$(TargetName).pdb" DestinationFiles="$(TargetDir)$(TargetName).gha.pdb"
+          Condition="$([MSBuild]::IsOSPlatform(OSX)) and $(TargetFramework.StartsWith('net4')) and Exists('$(TargetDir)$(TargetName).pdb')" />
+  </Target>
+
+</Project>

@@ -1,0 +1,13 @@
+name: miroconnect
+version: 1.0.0
+authors:
+  - Eesha Jain
+description: "Grasshopper components for the Miro REST API — build sticky notes, shapes, text, cards, frames, images, connectors and tags on a Miro board from Rhino/Grasshopper. Made with the PleaseREST Claude Code plugin."
+url: https://github.com/eesha-on-jupiter/MiroConnect
+keywords:
+  - grasshopper
+  - rhino
+  - miro
+  - rest
+  - api
+icon: MiroConnectLogo.png

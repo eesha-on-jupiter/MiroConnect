@@ -1,0 +1,84 @@
+{
+  "plugin_name": "MiroConnect",
+  "plugin_prefix": "MC",
+  "resources_path": "Icons",
+  "resx_path": "Properties/Resources.resx",
+
+  "defaults": {
+    "size": 24,
+    "fg_color": "#FFD02F",
+    "background": { "shape": { "type": "rounded-square", "fill": "#000000" } }
+  },
+
+  "plugin_icon": {
+    "size": 16,
+    "fg_iconify_id": "mdi:view-dashboard",
+    "fg_color": "#FFD02F",
+    "background": { "shape": { "type": "rounded-square", "fill": "#000000" } }
+  },
+
+  "subcategories": {
+    "Auth":       { "background": { "shape": { "type": "octagon",        "fill": "#000000" } } },
+    "Boards":     { "background": { "shape": { "type": "square",         "fill": "#000000" } } },
+    "Items":      { "background": { "shape": { "type": "rounded-square", "fill": "#000000" } } },
+    "Connectors": { "background": { "shape": { "type": "hexagon",        "fill": "#000000" } } },
+    "Tags":       { "background": { "shape": { "type": "bookmark",       "fill": "#000000" } } },
+    "Geometry":   { "background": { "shape": { "type": "circle",         "fill": "#000000" } } },
+    "Style":      { "background": { "shape": { "type": "flower",         "fill": "#000000" } } },
+    "Items JSON": { "background": { "shape": { "type": "document",       "fill": "#000000" } } },
+    "Presets":    { "background": { "shape": { "type": "pentagon",       "fill": "#000000" } } },
+    "Data":       { "background": { "shape": { "type": "cut-square",     "fill": "#000000" } } }
+  },
+
+  "components": [
+    { "name": "MiroAuth",        "subcategory": "Auth",       "fg_iconify_id": "mdi:key" },
+
+    { "name": "FindBoard",       "subcategory": "Boards",     "fg_iconify_id": "mdi:magnify" },
+    { "name": "GetBoard",        "subcategory": "Boards",     "fg_iconify_id": "mdi:information" },
+    { "name": "CreateBoard",     "subcategory": "Boards",     "fg_iconify_id": "mdi:plus-thick" },
+    { "name": "DeleteBoard",     "subcategory": "Boards",     "fg_iconify_id": "mdi:trash-can" },
+
+    { "name": "GetItem",         "subcategory": "Items",      "fg_iconify_id": "mdi:eye" },
+    { "name": "GetAllItems",     "subcategory": "Items",      "fg_iconify_id": "mdi:view-grid" },
+    { "name": "CreateItem",      "subcategory": "Items",      "fg_iconify_id": "mdi:plus-circle" },
+    { "name": "DeleteItem",      "subcategory": "Items",      "fg_iconify_id": "mdi:minus-circle" },
+
+    { "name": "GetConnector",    "subcategory": "Connectors", "fg_iconify_id": "mdi:vector-polyline" },
+    { "name": "CreateConnector", "subcategory": "Connectors", "fg_iconify_id": "mdi:plus-box" },
+    { "name": "DeleteConnector", "subcategory": "Connectors", "fg_iconify_id": "mdi:minus-box" },
+
+    { "name": "GetItemTags",     "subcategory": "Tags",       "fg_iconify_id": "mdi:tag-multiple" },
+    { "name": "CreateTag",       "subcategory": "Tags",       "fg_iconify_id": "mdi:tag-plus" },
+    { "name": "AttachTag",       "subcategory": "Tags",       "fg_iconify_id": "mdi:link-variant" },
+    { "name": "DetachTag",       "subcategory": "Tags",       "fg_iconify_id": "mdi:link-variant-off" },
+
+    { "name": "Position",        "subcategory": "Geometry",   "fg_iconify_id": "mdi:arrow-all" },
+    { "name": "Offset",          "subcategory": "Geometry",   "fg_iconify_id": "mdi:arrow-expand-all" },
+    { "name": "Grid",            "subcategory": "Geometry",   "fg_iconify_id": "mdi:grid" },
+    { "name": "Parent",          "subcategory": "Geometry",   "fg_iconify_id": "mdi:folder" },
+
+    { "name": "StickyNoteStyle", "subcategory": "Style",      "fg_iconify_id": "mdi:note" },
+    { "name": "ShapeStyle",      "subcategory": "Style",      "fg_iconify_id": "mdi:shape" },
+    { "name": "TextStyle",       "subcategory": "Style",      "fg_iconify_id": "mdi:format-text" },
+    { "name": "CardStyle",       "subcategory": "Style",      "fg_iconify_id": "mdi:card-text" },
+    { "name": "FrameStyle",      "subcategory": "Style",      "fg_iconify_id": "mdi:crop-free" },
+    { "name": "ConnectorStyle",  "subcategory": "Style",      "fg_iconify_id": "mdi:vector-line" },
+
+    { "name": "StickyNoteJson",  "subcategory": "Items JSON", "fg_iconify_id": "mdi:note-text" },
+    { "name": "ShapeJson",       "subcategory": "Items JSON", "fg_iconify_id": "mdi:hexagon-multiple" },
+    { "name": "TextJson",        "subcategory": "Items JSON", "fg_iconify_id": "mdi:format-title" },
+    { "name": "CardJson",        "subcategory": "Items JSON", "fg_iconify_id": "mdi:card-account-details" },
+    { "name": "FrameJson",       "subcategory": "Items JSON", "fg_iconify_id": "mdi:crop" },
+    { "name": "ImageJson",       "subcategory": "Items JSON", "fg_iconify_id": "mdi:image" },
+    { "name": "ConnectorJson",   "subcategory": "Items JSON", "fg_iconify_id": "mdi:vector-curve" },
+    { "name": "TagJson",         "subcategory": "Items JSON", "fg_iconify_id": "mdi:tag" },
+
+    { "name": "ShapeTypePreset",       "subcategory": "Presets", "fg_iconify_id": "mdi:shape-plus" },
+    { "name": "StickyNoteColorPreset", "subcategory": "Presets", "fg_iconify_id": "mdi:note-multiple" },
+    { "name": "CardColorPreset",       "subcategory": "Presets", "fg_iconify_id": "mdi:palette" },
+    { "name": "FontFamilyPreset",      "subcategory": "Presets", "fg_iconify_id": "mdi:format-font" },
+    { "name": "StrokeStylePreset",     "subcategory": "Presets", "fg_iconify_id": "mdi:border-style" },
+
+    { "name": "TableReader",     "subcategory": "Data",       "fg_iconify_id": "mdi:table" }
+  ]
+}

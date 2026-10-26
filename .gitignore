@@ -1,0 +1,19 @@
+bin/
+obj/
+.vs/
+*.user
+*.DS_Store
+dist/
+.env
+*.local
+dogfood/
+demos/
+.claude/
+settings.local.json
+
+# Local dev tooling — never ships
+MCP/
+.mcp.json
+.vscode/
+__pycache__/
+TestResults/
