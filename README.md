@@ -2,9 +2,9 @@
 <img src="MC_Plugin_Icon.png" alt="MiroConnect" width="96" align="left" style="margin-right:16px">
 
 # MiroConnect
-> Grasshopper plugin for the Miro REST API — by Eesha Jain
+> Grasshopper plugin for the Miro REST API, by Eesha Jain
 >
-> Built with the [PleaseREST](https://github.com/eesha-on-jupiter/PleaseREST) Claude Code plugin — an AI pipeline that turns a REST API reference into a Grasshopper plugin.
+> Built with the [PleaseREST](https://github.com/eesha-on-jupiter/PleaseREST) Claude Code plugin, an AI pipeline that turns a REST API reference into a Grasshopper plugin.
 
 Build Miro boards from a Grasshopper canvas: lay out sticky notes, shapes, text, cards, frames and images with position and grid helpers, join them with connectors, tag them, and push the whole batch to a live board with one button click.
 
@@ -14,19 +14,19 @@ Build Miro boards from a Grasshopper canvas: lay out sticky notes, shapes, text,
 
 Turn design data into a board the team can work on, and regenerate it whenever the data changes:
 
-- **Spreadsheets to sticky walls** — a CSV or Excel sheet becomes a grid of sticky notes or cards, one per row, in a single click.
-- **Diagrams from the definition** — shapes laid out by Grid or Position, placed inside frames and chained with connectors, so a process or zoning diagram follows the model.
-- **Kanban and review boards** — cards with titles, descriptions and due dates under text column headers, coloured and tagged for status.
-- **Images on the board** — public URLs, local files or Grasshopper bitmaps uploaded straight into a frame.
-- **Read back and clean up** — find boards by name, list and inspect items, read connectors and tags, and clear a board between runs.
+- **Spreadsheets to sticky walls**: a CSV or Excel sheet becomes a grid of sticky notes or cards, one per row, in a single click.
+- **Diagrams from the definition**: shapes laid out by Grid or Position, placed inside frames and chained with connectors, so a process or zoning diagram follows the model.
+- **Kanban and review boards**: cards with titles, descriptions and due dates under text column headers, coloured and tagged for status.
+- **Images on the board**: public URLs, local files or Grasshopper bitmaps uploaded straight into a frame.
+- **Read back and clean up**: find boards by name, list and inspect items, read connectors and tags, and clear a board between runs.
 
 Component chains for each of these are in [docs/workflows.md](docs/workflows.md); a full demo canvas plan is in [docs/demo-workflows.md](docs/demo-workflows.md).
 
 **Under the hood**
 
-- JSON and HTTP are separate — Geometry, Style and Items JSON components only build request bodies; nothing reaches Miro until an HTTP component sends them.
-- One click, many items — every write is a button; Create Item flattens any JSON tree and posts every item in order, returning IDs aligned with the input.
-- Center-based coordinates — positions are item centers on Miro's infinite canvas, origin at the board center, Y down; frames are filled by wiring a frame's ID through **Parent**.
+- JSON and HTTP are separate. Geometry, Style and Items JSON components only build request bodies; nothing reaches Miro until an HTTP component sends them.
+- One click, many items. Every write is a button; Create Item flattens any JSON tree and posts every item in order, returning IDs aligned with the input.
+- Center-based coordinates. Positions are item centers on Miro's infinite canvas, origin at the board center, Y down; frames are filled by wiring a frame's ID through **Parent**.
 <!-- pr:end header -->
 
 <!-- pr:begin install -->
@@ -35,19 +35,19 @@ Component chains for each of these are in [docs/workflows.md](docs/workflows.md)
 **Food4Rhino:** (pending first release)
 **Yak:** `_PackageManager` → search `miroconnect` (pending first release)
 
-**Rhino 8 note:** the Rhino 8 packages are built for .NET 7 and load only when Rhino runs on the .NET Core runtime (its default). If the MiroConnect tab is missing, run `SetDotNetRuntime` in Rhino, choose **.NET Core**, and restart — Rhino.Inside Revit setups often switch this to .NET Framework.
+**Rhino 8 note:** the Rhino 8 packages are built for .NET 7 and load only when Rhino runs on the .NET Core runtime (its default). If the MiroConnect tab is missing, run `SetDotNetRuntime` in Rhino, choose **.NET Core**, and restart. Rhino.Inside Revit setups often switch this to .NET Framework.
 
-**From source:** `dotnet build MiroConnect.csproj`, then drop the `.gha` for your Rhino version into Grasshopper's `Libraries` folder together with the `.dll` files beside it (Rhino 7: `bin/Debug/net48`; Rhino 8 Windows: `bin/Debug/net7.0-windows`; Rhino 8 Mac: `bin/Debug/net7.0`) and restart Rhino — or point Grasshopper's developer-folder setting at the build folder. Close Rhino before rebuilding; it locks the `.gha`.
+**From source:** `dotnet build MiroConnect.csproj`, then drop the `.gha` for your Rhino version into Grasshopper's `Libraries` folder together with the `.dll` files beside it (Rhino 7: `bin/Debug/net48`; Rhino 8 Windows: `bin/Debug/net7.0-windows`; Rhino 8 Mac: `bin/Debug/net7.0`) and restart Rhino, or point Grasshopper's developer-folder setting at the build folder. Close Rhino before rebuilding; it locks the `.gha`.
 <!-- pr:end install -->
 
 <!-- pr:begin quickstart -->
 ## Quick start
 
-1. Create a Miro app, give it `boards:read` and `boards:write`, install it on your team and copy the access token — see [docs/authentication.md](docs/authentication.md).
-2. Drop **Miro Auth** (Auth tab) and plug your token into `Token` — `Status` reads `Connected`.
+1. Create a Miro app, give it `boards:read` and `boards:write`, install it on your team and copy the access token (see [docs/authentication.md](docs/authentication.md)).
+2. Drop **Miro Auth** (Auth tab) and plug your token into `Token`; `Status` reads `Connected`.
 3. **Find Board** (Boards tab) with a board name → `Board ID`.
 4. Build the content: **Position** or **Grid** (Geometry) → a style component (Style) → **Sticky Note JSON**, **Shape JSON**, **Card JSON**… (Items JSON) → `Item JSON`.
-5. **Create Item** (Items tab) with the token, the Board ID, the item type (`sticky_note`, `shape`, …) and the `Item JSON` — click the button.
+5. **Create Item** (Items tab) with the token, the Board ID, the item type (`sticky_note`, `shape`, …) and the `Item JSON`, then click the button.
 
 Full walkthrough: [docs/quickstart.md](docs/quickstart.md). Common wirings as component chains: [docs/workflows.md](docs/workflows.md). Reference for every component: [docs/index.md](docs/index.md).
 <!-- pr:end quickstart -->
@@ -92,27 +92,27 @@ Full walkthrough: [docs/quickstart.md](docs/quickstart.md). Common wirings as co
 | Style | Shape Style | Fill Color, Stroke Color, Stroke Width, Font Size | Style JSON | Builds a Miro shape style JSON object. |
 | Style | Sticky Note Style | Fill Color, Text Align, Font Size | Style JSON | Builds a Miro sticky note style JSON object. |
 | Style | Text Style | Fill Color, Font Family, Font Size, Text Align | Style JSON | Builds a Miro text item style JSON object. |
-| Presets | Card Color | — | Value list | Preset list of Miro card theme hex color values for use with Card Style. |
-| Presets | Font Family | — | Value list | Preset list of Miro font family values for use with Text Style. |
-| Presets | Shape Type | — | Value list | Preset list of Miro shape type values for use with Shape JSON. |
-| Presets | Sticky Note Color | — | Value list | Preset list of Miro sticky note fill color values for use with Sticky Note Style. |
-| Presets | Stroke Style | — | Value list | Preset list of Miro connector dash patterns for Connector Style's Line Style input. |
+| Presets | Card Color | None | Value list | Preset list of Miro card theme hex color values for use with Card Style. |
+| Presets | Font Family | None | Value list | Preset list of Miro font family values for use with Text Style. |
+| Presets | Shape Type | None | Value list | Preset list of Miro shape type values for use with Shape JSON. |
+| Presets | Sticky Note Color | None | Value list | Preset list of Miro sticky note fill color values for use with Sticky Note Style. |
+| Presets | Stroke Style | None | Value list | Preset list of Miro connector dash patterns for Connector Style's Line Style input. |
 <!-- pr:end components -->
 
 <!-- pr:begin requirements -->
 ## Requirements
 
-- Rhino 7 or 8 (Windows or Mac — Rhino 8 Mac is untested in 1.0.0, see the [changelog](docs/changelog.md#known-limitations))
+- Rhino 7 or 8 (Windows or Mac; Rhino 8 Mac is untested in 1.0.0, see the [changelog](docs/changelog.md#known-limitations))
 - A Miro account and a Miro app installed on the team whose boards you want to use
 - OAuth scopes: `boards:read` (Miro Auth, Find/Get Board, Get Item, Get All Items, Get Connector, Get Item Tags); `boards:write` (Create/Delete Board, Create/Delete Item, Create/Delete Connector, Create/Attach/Detach Tag)
 
 ## Documentation
 
-- [docs/index.md](docs/index.md) — overview and every component by tab
-- [docs/quickstart.md](docs/quickstart.md) — first sticky note in six steps
-- [docs/workflows.md](docs/workflows.md) — common wirings as component chains
-- [docs/demo-workflows.md](docs/demo-workflows.md) — an eight-workflow demo canvas plan
-- [docs/authentication.md](docs/authentication.md) — tokens and scopes
+- [docs/index.md](docs/index.md): overview and every component by tab
+- [docs/quickstart.md](docs/quickstart.md): first sticky note in six steps
+- [docs/workflows.md](docs/workflows.md): common wirings as component chains
+- [docs/demo-workflows.md](docs/demo-workflows.md): an eight-workflow demo canvas plan
+- [docs/authentication.md](docs/authentication.md): tokens and scopes
 - [docs/changelog.md](docs/changelog.md)
 
 ## Development
@@ -128,5 +128,5 @@ This plugin was generated with the **PleaseREST** Claude Code plugin (`please-re
 <!-- pr:begin license -->
 ## License
 
-MiroConnect is released under the MIT License — Copyright (c) 2026 Eesha Jain. See [LICENSE](LICENSE).
+MiroConnect is released under the MIT License. Copyright (c) 2026 Eesha Jain. See [LICENSE](LICENSE).
 <!-- pr:end license -->

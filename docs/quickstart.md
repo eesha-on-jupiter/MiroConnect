@@ -25,7 +25,7 @@ Six components, one canvas: validate a token, pick a board, build one sticky not
 - **Style > Sticky Note Style** ([page](components/JSON/Style/StickyNoteStyleComponent.md)) with a **Presets > Sticky Note Color** wired into `Fill Color`.
 - **Items JSON > Sticky Note JSON** ([page](components/JSON/Items/StickyNoteJsonComponent.md)): a Panel `Hello from Grasshopper` into `Content`, Position's `Position JSON` into `Position JSON`, the style's `Style JSON` into `Style JSON`.
 
-Nothing has been sent yet — JSON components never touch the network.
+Nothing has been sent yet. JSON components never touch the network.
 
 ## 5. Push it
 
@@ -37,11 +37,11 @@ Moving a slider does not resend anything: writes only fire on a click, and each 
 
 ## 6. Scale it up
 
-- Swap **Position** for **Grid** and feed a list into `Content` — one click creates every note. A spreadsheet works too, via [Table Reader](components/Data/TableReader.md).
+- Swap **Position** for **Grid** and feed a list into `Content`, and one click creates every note. A spreadsheet works too, via [Table Reader](components/Data/TableReader.md).
 - Clean up with [Get All Items](components/HTTP/Items/GetAllItemsComponent.md) → [Delete Item](components/HTTP/Items/DeleteItemComponent.md).
 
 ## Next
 
-- [workflows.md](workflows.md) — common wirings as component chains.
-- [demo-workflows.md](demo-workflows.md) — a full eight-workflow demo canvas plan.
-- [index.md](index.md) — every component by tab.
+- [workflows.md](workflows.md): common wirings as component chains.
+- [demo-workflows.md](demo-workflows.md): a full eight-workflow demo canvas plan.
+- [index.md](index.md): every component by tab.

@@ -1,19 +1,19 @@
 # Workflows
 
-Component chains for the things people usually build. Components only — see each component's page for its inputs. `─▶` is a wire; `(click)` is a button-triggered write. Every HTTP component also takes the `Token`, and most take the `Board ID` from [Find Board](components/HTTP/Boards/FindBoardComponent.md); those wires are left out below.
+Component chains for the things people usually build. Components only; see each component's page for its inputs. `─▶` is a wire; `(click)` is a button-triggered write. Every HTTP component also takes the `Token`, and most take the `Board ID` from [Find Board](components/HTTP/Boards/FindBoardComponent.md); those wires are left out below.
 
 The full canvas plan behind these, with port-by-port wiring and board regions, is [demo-workflows.md](demo-workflows.md).
 
 What you can do with MiroConnect:
 
-- Check a Miro token works, pick a board by name and see what is on it — [1](#1-connect-and-inspect)
-- Put a styled sticky note on a board from Grasshopper with one click — [2](#2-hello-board)
-- Turn a spreadsheet into a grid of sticky notes in one push — [3](#3-spreadsheet-to-sticky-grid)
-- Draw a framed flow diagram of shapes joined by connectors — [4](#4-framed-flow-diagram)
-- Create tags, attach them to items and read them back — [5](#5-tag-and-verify)
-- Build a Kanban wall of cards with column headers from a spreadsheet — [6](#6-kanban-card-wall)
-- Place images from URLs, local files or Grasshopper bitmaps inside a frame — [7](#7-images-into-a-frame)
-- Clear items and connectors off a board, or reset it entirely, between runs — [8](#8-teardown)
+- Check a Miro token works, pick a board by name and see what is on it: [1](#1-connect-and-inspect)
+- Put a styled sticky note on a board from Grasshopper with one click: [2](#2-hello-board)
+- Turn a spreadsheet into a grid of sticky notes in one push: [3](#3-spreadsheet-to-sticky-grid)
+- Draw a framed flow diagram of shapes joined by connectors: [4](#4-framed-flow-diagram)
+- Create tags, attach them to items and read them back: [5](#5-tag-and-verify)
+- Build a Kanban wall of cards with column headers from a spreadsheet: [6](#6-kanban-card-wall)
+- Place images from URLs, local files or Grasshopper bitmaps inside a frame: [7](#7-images-into-a-frame)
+- Clear items and connectors off a board, or reset it entirely, between runs: [8](#8-teardown)
 
 ---
 
@@ -54,7 +54,7 @@ One Style JSON feeds every note: builders repeat the last value of shorter input
 
 ## 4. Framed flow diagram
 
-Three clicks, in order — each stage needs the IDs the previous one returned.
+Three clicks, in order; each stage needs the IDs the previous one returned.
 
 ```
 Position ─▶ Frame JSON ─▶ Create Item (Type "frame", click) ──Item IDs─▶ Parent

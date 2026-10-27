@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.0.0 — 2026-10-26
+## 1.0.0 (2026-10-26)
 
 Initial release.
 
@@ -18,10 +18,10 @@ Initial release.
 
 ### Known limitations
 
-- **Rhino 8 Mac is untested.** The Mac package builds, but no component has been run in Rhino 8 for Mac. Table Reader's `.xlsx` path uses EPPlus 4.5, which relies on `System.Drawing`; on Mac that is Rhino's own implementation, so reading Excel files there may fail — CSV does not depend on it. Image JSON's Bitmap input and the button rendering also go through `System.Drawing`.
+- **Rhino 8 Mac is untested.** The Mac package builds, but no component has been run in Rhino 8 for Mac. Table Reader's `.xlsx` path uses EPPlus 4.5, which relies on `System.Drawing`; on Mac that is Rhino's own implementation, so reading Excel files there may fail. CSV does not depend on it. Image JSON's Bitmap input and the button rendering also go through `System.Drawing`.
 - **Request bodies are checked against Miro's reference, not the live API, for this release.** A few style fields the components send are not in Miro's published schema and may be ignored or rejected:
-  - Sticky Note Style `Font Size` (Miro's sticky note style has no `fontSize`) — leave it at 0 to omit it.
-  - Frame Style `Border Color` (frames have no `borderColor`) — leave it empty to omit it.
+  - Sticky Note Style `Font Size` (Miro's sticky note style has no `fontSize`); leave it at 0 to omit it.
+  - Frame Style `Border Color` (frames have no `borderColor`); leave it empty to omit it.
   - Frame Style `Fill Color` and Shape Style `Fill Color`: Miro documents a fixed palette of hex values; other hex values may be rejected.
 - Get All Items reads only the first page of results; it does not follow Miro's pagination cursor.
 - Create Item takes one item type per click; mixed types need one Create Item each.

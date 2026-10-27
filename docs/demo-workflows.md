@@ -1,4 +1,4 @@
-# MiroConnect — Demo Workflows
+# MiroConnect Demo Workflows
 
 Eight workflows for `MiroConnect_Demo.gh`. Each one is a separate GH group on the
 canvas, stacked top to bottom in the order below. Every workflow writes into its own
@@ -54,7 +54,7 @@ TOKEN, BOARD ──> Get Item.T / .Board
 
 ---
 
-## W2 · Hello board — one sticky note
+## W2 · Hello board: one sticky note
 
 **Teaches:** the JSON → HTTP split and the button trigger. Smallest possible write.
 **Board region:** `(0, 0)`
@@ -119,7 +119,7 @@ Create Item.IDs ──> [W3 IDS] text param      (reused by W5 and W8)
   `{0}` for column 0, `{1}` for column 1, and so on.
 - Grid emits one Position JSON per cell, left to right, wrapping at `Items Per Row`.
 - The JSON components match by longest list and repeat the last value, so a single
-  style object feeds every note — no grafting, no list repeating needed.
+  style object feeds every note, with no grafting, no list repeating needed.
 - **Create Item** flattens the whole JSON tree into one list and posts the items one by
   one, so a 40-row CSV is a single button press.
 
@@ -132,7 +132,7 @@ Create Item.IDs ──> [W3 IDS] text param      (reused by W5 and W8)
 **Teaches:** parenting into frames, staged writes, connector pairing.
 **Board region:** origin `(0, -1400)`
 
-Stage 1 — create the frame:
+Stage 1: create the frame:
 
 ```
 Position (X=0, Y=-1400, W=1400, H=900) ──> Frame JSON.G
@@ -142,7 +142,7 @@ TOKEN / BOARD / Panel "frame" ──> Create Item.T / .Board / .Type
 Create Item.IDs ──> [FRAME ID] text param
 ```
 
-Stage 2 — shapes inside the frame:
+Stage 2: shapes inside the frame:
 
 ```
 [FRAME ID] ──> Parent.F ──> Parent.P ──> Shape JSON.P
@@ -154,7 +154,7 @@ Shape JSON.J ──> Create Item.J ──> Create Item.IDs ──> [SHAPE IDS] t
 TOKEN / BOARD / Panel "shape" ──> Create Item.T / .Board / .Type
 ```
 
-Stage 3 — chain them with connectors:
+Stage 3: chain them with connectors:
 
 ```
 [SHAPE IDS] ──> Sub List (0 .. N-2) ──> Connector JSON.Start
@@ -175,7 +175,7 @@ Get Connector.Start / .End / .R ──> Panels
 
 - Three button presses in order: frame, then shapes, then connectors. Each stage needs
   the IDs the previous one returned, which is exactly why writes are button-gated.
-- Connectors carry no position — they only reference item IDs.
+- Connectors carry no position; they only reference item IDs.
 - The two **Sub List** components are the chain trick: item *i* joins item *i+1*.
 
 **Try it:** add a sixth line to the content panel, bump `Grid.N` to 6, re-press all three.
@@ -208,7 +208,7 @@ undo:
 same Items + Tag ──> Detach Tag ──> Detach Tag.R ──> Panel
 ```
 
-**Try it:** attach, read the titles back, detach, read again — the list empties.
+**Try it:** attach, read the titles back, detach, read again, and the list empties.
 
 ---
 
@@ -243,11 +243,11 @@ TOKEN / BOARD ──> both Create Item components
 
 - Grid fills left to right, so with `R=3` the three columns line up under the headers.
 - Due dates must be ISO 8601 (`2026-10-01T00:00:00Z`); the demo CSV already is.
-- Offset shifts an existing Position JSON — cheaper than three Position components when
+- Offset shifts an existing Position JSON, cheaper than three Position components when
   one size is shared across columns.
 
 **Try it:** change the Card Color preset and press again. Miro replaces nothing, so a
-second wall appears — use W8 to clear it.
+second wall appears; use W8 to clear it.
 
 ---
 
@@ -281,7 +281,7 @@ TOKEN / BOARD ──> Create Item.T / .Board
 ## W8 · Teardown
 
 **Teaches:** cleanup, type filters, and how to reset the demo board between showings.
-Put this group at the bottom in a red GH group named **DANGER — deletes board content**.
+Put this group at the bottom in a red GH group named **DANGER: deletes board content**.
 
 ```
 TOKEN / BOARD ──> Get All Items.T / .Board
@@ -306,7 +306,7 @@ TOKEN / BOARD ──> Delete Board
 - Delete connectors before the items they join, or the calls error out on connectors
   whose endpoints are already gone.
 - Leave **Delete Board** on the canvas but wire its `ID` from a separate panel, not from
-  `BOARD` — so a stray click cannot take out the demo board.
+  `BOARD`, so a stray click cannot take out the demo board.
 
 ---
 
@@ -321,12 +321,12 @@ TOKEN / BOARD ──> Delete Board
 ├── W5  Tag and verify                                3 buttons     │
 ├── W6  Kanban card wall                             2 buttons      │
 ├── W7  Images into a frame                          2 buttons      │
-└── W8  Teardown                              red    2–4 buttons    │
+└── W8  Teardown                              red    2-4 buttons    │
 ```
 
 ## Demo data to ship beside the .gh
 
-`demo-data/tasks.csv` — 9 rows, 3 columns, feeds W3 and W6:
+`demo-data/tasks.csv`: 9 rows, 3 columns, feeds W3 and W6:
 
 ```csv
 Task,Owner,Due
@@ -335,12 +335,12 @@ Massing options,J. Park,2026-10-08T00:00:00Z
 Structural grid,M. Osei,2026-10-15T00:00:00Z
 ```
 
-`demo-data/*.png` — two or three small images for W7.
+`demo-data/*.png`: two or three small images for W7.
 
 ## Coverage
 
 Every shipped component appears at least once:
-Auth W1 · Boards W1/W8 · Items W2–W7 · Connectors W4/W8 · Tags W5 ·
+Auth W1 · Boards W1/W8 · Items W2-W7 · Connectors W4/W8 · Tags W5 ·
 Position W2/W7 · Grid W3/W4/W6/W7 · Offset W6 · Parent W4/W7 ·
 all six Style components · all six Item JSON components · Tag JSON W5 ·
 Connector JSON W4 · Table Reader W3/W6 · all five presets.
