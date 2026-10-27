@@ -27,7 +27,7 @@ The project-local copies live in `.claude/skills/` (gitignored); the `please-res
 ## Current build state
 
 - **Version:** 1.0.0 — pre-release; the first tag will be `v1.0.0`
-- **Phase:** 15 — Package + Ship. 40 components, builder unit tests, `docs/`, `.yak` packages, Components-folder zips and CI workflows (`build.yml` on PR, `publish.yml` on tag) are complete. Repo: https://github.com/eesha-on-jupiter/MiroConnect (not yet pushed).
+- **Phase:** 15 — Package + Ship. 40 components, builder unit tests, `docs/`, `.yak` packages, Components-folder zips and CI (`publish.yml` on a `v*.*.*` tag: package + GitHub Release) are complete. Repo: https://github.com/eesha-on-jupiter/MiroConnect.
 - **Next step:** push `main` and tag `v1.0.0` for the GitHub Release; optional `yak login` + `yak push` for `_PackageManager`; Food4Rhino listing; live re-test of the style fields listed under Known limitations; Mac test.
 - **Last active:** 2026-10-26
 <!-- pr:end state -->
